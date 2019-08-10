@@ -2,6 +2,10 @@ queues = new Map();
 getQueueSize = function() {
   return queues.size;
 };
+getQueue = function(queueName){
+  console.log(queues,queueName);
+  return queues.get(queueName);
+}
 createQueue = function(queueName) {
   if (queues.get(queueName) == undefined) {
     queues.set(queueName, []);
@@ -13,4 +17,4 @@ createQueue = function(queueName) {
 };
 module.exports.getQueueSize = getQueueSize;
 module.exports.createQueue = createQueue;
-module.exports.queues = queues;
+module.exports.getQueue = getQueue;
