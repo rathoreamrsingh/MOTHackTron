@@ -8,7 +8,9 @@ public class QueueServicePOJO {
 	private int maxSize;
 	private String name;
 	
-	public QueueServicePOJO() {
+	public QueueServicePOJO(String name, int maxSize) {
+		this.maxSize = maxSize;
+		this.name = name;
 		queue = new LinkedList<String>();
 	}
 	

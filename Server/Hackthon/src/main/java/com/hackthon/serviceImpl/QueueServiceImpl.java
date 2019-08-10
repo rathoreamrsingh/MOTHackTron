@@ -1,8 +1,7 @@
 package com.hackthon.serviceImpl;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.Map;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
 
@@ -19,12 +18,13 @@ public class QueueServiceImpl  implements QueueService{
 	public void QueueServiceImp() {
 		
 		queueMap = new ConcurrentHashMap<String, QueueServicePOJO>();
+		queueMap.put("one", new QueueServicePOJO("one", 10));
 	}
 	
 	
-	public String addMessageToQueue(String queueName, String message){
+	public int addMessageToQueue(String queueName, String message){
 		
-		QueueServicePOJO queuePojo = new QueueServicePOJO();
+		QueueServicePOJO queuePojo = null;
 		Queue<String> currentQueue = new LinkedList<String>();
 		
 		if(queueMap.containsKey(queueName)) {
@@ -33,16 +33,31 @@ public class QueueServiceImpl  implements QueueService{
 			if(queuePojo.getMaxSize() < currentQueue.size()) {
 				currentQueue.add(message);
 			}else{
-				return "Maximum Queue size reached";
+				return 1;
 			}
 		 
 		}
-		return "success";
+		return 0;
 	}
 	
-	
-	public void addQueue(String queueName, int size ) {
+	public int deleteQueue(String queueName) {
 		
+		if(queueMap.containsKey(queueName)){
+			queueMap.remove(queueName);
+		}
+		return 0;
+		
+	}
+	
+	public int addQueue(String queueName, int maxSize) {
+		QueueServicePOJO  newQueue = new QueueServicePOJO(queueName,maxSize);
+		if(queueMap.size()<200) {
+			queueMap.put(queueName,newQueue);
+		}
+		else{
+			return 1;
+		}
+		return 0;
 	}
 
 
