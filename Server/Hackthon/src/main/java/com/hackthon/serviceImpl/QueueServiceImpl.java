@@ -115,7 +115,7 @@ public class QueueServiceImpl  implements QueueService{
 	 
 	 public String checkFullorEmpty(String queueName) {
 		 if(!queueMap.containsKey(queueName)) {
-				throw new Exception("queue doesn't exist");
+				return null;
 		 }
 		 Queue<String> que = queueMap.get(queueName).getQueue();
 		 if(que.isEmpty()) return "Service Window is Empty";
@@ -123,6 +123,13 @@ public class QueueServiceImpl  implements QueueService{
 		 else return "Service Window is active";
 	 }
 	
+	 public String consume(String queueName) {
+		 String consumed = "";
+		 if(queueMap.contains(queueName)) {
+			 consumed =   queueMap.get(queueName).getQueue().poll();
+		 }
+		return consumed;
+	 }
 
 
 }

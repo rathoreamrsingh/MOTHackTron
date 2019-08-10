@@ -21,5 +21,7 @@ public interface QueueService {
 	
 	String checkFullorEmpty(String queueName);
 	
+	String consume(String queueName);
+	
 	
 }
