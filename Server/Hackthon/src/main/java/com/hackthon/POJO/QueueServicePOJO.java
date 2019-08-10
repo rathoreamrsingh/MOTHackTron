@@ -4,7 +4,7 @@ import java.util.Queue;
 
 public class QueueServicePOJO {
 	
-	private Queue queue;
+	private Queue<String> queue;
 	private int maxSize;
 	private String name;
 	
@@ -12,6 +12,10 @@ public class QueueServicePOJO {
 		this.maxSize = maxSize;
 		this.name = name;
 		queue = new LinkedList<String>();
+	}
+	
+	public QueueServicePOJO() {
+		this.queue = new LinkedList<String>();
 	}
 	
 	public Queue<String> getQueue() {
