@@ -14,6 +14,10 @@ public class QueueServicePOJO {
 		queue = new LinkedList<String>();
 	}
 	
+	public QueueServicePOJO() {
+		this.queue = new LinkedList<String>();
+	}
+	
 	public Queue<String> getQueue() {
 		return queue;
 	}
