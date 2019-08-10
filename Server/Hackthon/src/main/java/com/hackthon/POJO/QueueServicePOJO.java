@@ -4,7 +4,7 @@ import java.util.Queue;
 
 public class QueueServicePOJO {
 	
-	private Queue queue;
+	private Queue<String> queue;
 	private int maxSize;
 	private String name;
 	

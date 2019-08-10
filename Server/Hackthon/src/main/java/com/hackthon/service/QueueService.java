@@ -19,5 +19,9 @@ public interface QueueService {
 	
 	int removeItemFromQueue(String queueName);
 	
+	String checkFullorEmpty(String queueName);
+	
+	String consume(String queueName);
+	
 	
 }
