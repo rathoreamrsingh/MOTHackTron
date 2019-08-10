@@ -37,7 +37,7 @@ public class QueueServiceImpl implements QueueService {
 					return 1;
 				}
 			} else {
-				return 1;
+				return -1;
 			}
 		}
 		return 0;
@@ -56,7 +56,7 @@ public class QueueServiceImpl implements QueueService {
 
 	public int addQueue(String queueName, int maxSize) {
 		QueueServicePOJO newQueue = new QueueServicePOJO(queueName, maxSize);
-		if (queueMap.size() < 200) {
+		if (queueMap.size() < 200 && !queueMap.containsKey(queueName)) {
 			queueMap.put(queueName, newQueue);
 		} else {
 			return 1;
