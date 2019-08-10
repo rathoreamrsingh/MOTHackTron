@@ -22,7 +22,7 @@ public class QueueServiceImpl  implements QueueService{
 	}
 	
 	
-	public String addMessageToQueue(String queueName, String message){
+	public int addMessageToQueue(String queueName, String message){
 		
 		QueueServicePOJO queuePojo = new QueueServicePOJO();
 		Queue<String> currentQueue = new LinkedList<String>();
@@ -33,15 +33,19 @@ public class QueueServiceImpl  implements QueueService{
 			if(queuePojo.getMaxSize() < currentQueue.size()) {
 				currentQueue.add(message);
 			}else{
-				return "Maximum Queue size reached";
+				return 1;
 			}
 		 
 		}
-		return "success";
+		return 0;
 	}
 	
-	
-	public void addQueue(String queueName, int size ) {
+	public int deleteQueue(String queueName) {
+		
+		if(queueMap.containsKey(queueName)){
+			queueMap.remove(queueName);
+		}
+		return 0;
 		
 	}
 
