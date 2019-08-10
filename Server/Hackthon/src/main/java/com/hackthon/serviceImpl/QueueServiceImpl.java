@@ -6,11 +6,6 @@ import java.util.LinkedList;
 
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
-
-import java.util.List;
 
 
 import java.util.Queue;
@@ -91,14 +86,14 @@ public class QueueServiceImpl  implements QueueService{
 		return qnames;
 	}
 	
-	public QueueServicePOJO peakQueue(String queueName) throws Exception {
+	public Queue<String> browseQueue(String queueName) throws Exception {
 		
 			if(!queueMap.containsKey(queueName)) {
 				throw new Exception("queue doesn't exist");
 				
 			}
 			else {
-				return queueMap.get(queueName);
+				return queueMap.get(queueName).getQueue();
 			}
 		
 	}
