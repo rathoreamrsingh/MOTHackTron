@@ -27,13 +27,16 @@ public class QueueServiceImpl  implements QueueService{
 		
 		if(queueMap.containsKey(queueName)) {
 			queuePojo = queueMap.get(queueName);
+			if(queuePojo!=null) {
 			currentQueue = queuePojo.getQueue();
-			if(queuePojo.getMaxSize() < currentQueue.size()) {
+			if(queuePojo.getMaxSize() > currentQueue.size()) {
 				currentQueue.add(message);
 			}else{
 				return 1;
+				}
+			}else {
+				return 1;
 			}
-		 
 		}
 		return 0;
 	}
