@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+	<title>
+		Welcome
+	</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body ng-app="tabsApp" ng-controller="tabsController">
+<br>
+<h2>Welcome Home</h2>
+<div class="container">
+	<ul class="nav nav-tabs">
+	  <li role="presentation" ng-click="selectTab(1)" ng-class="{active:isActive(1)}"><a href="javascript:void(0);">Home</a></li>
+	  <li role="presentation" ng-click="selectTab(2)" ng-class="{active:isActive(2)}"><a href="javascript:void(0);">Add/ServiceWindow</a></li>
+	  <li role="presentation" ng-click="selectTab(3)" ng-class="{active:isActive(3)}"><a href="javascript:void(0);">Remove/CloseServiceWindow</a></li>
+	  <li role="presentation" ng-click="selectTab(4)" ng-class="{active:isActive(4)}"><a href="javascript:void(0);">Close Office</a></li>
+	</ul>
+	<div ng-show="isActive(1)">
+		<br />
+		<h4>List of Service windows </h4>
+		<br />
+		<button type="button" class="btn btn-primary btn-block" onclick="check()">Add Customer</button>
+		<button type="button" class="btn btn-default btn-block">Call Token</button>
+		<button type="button" class="btn btn-primary btn-block">Customer Served</button>
+		<button type="button" class="btn btn-default btn-block">List Of Customers</button>
+		<button type="button" class="btn btn-primary btn-block">Check full or Empty</button>
+	</div>
+	<div ng-show="isActive(2)">
+		This is content under Add/ServiceWindow Tab 
+	</div>
+	<div ng-show="isActive(3)">
+		This is content under Remove/CloseServiceWindow Tab
+	</div>
+	<div ng-show="isActive(4)">
+		This is content under Close Office Tab
+	</div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+angular.module('tabsApp',[]).controller('tabsController',['$scope',function($scope){
+	$scope.active = 1;
+	$scope.selectTab = function(value){
+		$scope.active = value;
+	}
+
+	$scope.isActive = function(value){
+		if($scope.active==value){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}
+}]);
+</script>
+
+<script>
+	function check(){
+		alert("test");
+		$.ajax({
+
+type:"GET",//or POST
+url:'http://10.10.0.251:8080/addElement',
+				   //  (or whatever your url is)
+data:{data1:"one",data2:"success"},
+//can send multipledata like {data1:var1,data2:var2,data3:var3
+//can use dataType:'text/html' or 'json' if response type expected 
+success:function(responsedata){
+	   // process on data
+	   alert("got response as "+"'"+responsedata+"'");
+
+}
+})	
+	}
+</script>
+</body>
+</html>
