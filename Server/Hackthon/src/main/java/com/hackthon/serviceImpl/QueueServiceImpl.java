@@ -9,9 +9,13 @@ public class QueueServiceImpl  implements QueueService{
 	
 	private Map<String,String> queueMap = new HashMap<String,String>();
 	
-	public void add(String queueName, String message) {
+	public void addQueue(String queueName, String message){
 		
-		
+		if(queueMap.containsKey(queueName)) {
+			
+			
+			
+		}
 	}
 
 }
