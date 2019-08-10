@@ -112,6 +112,16 @@ public class QueueServiceImpl  implements QueueService{
 				}
 			
 	 }
+	 
+	 public String checkFullorEmpty(String queueName) {
+		 if(!queueMap.containsKey(queueName)) {
+				throw new Exception("queue doesn't exist");
+		 }
+		 Queue<String> que = queueMap.get(queueName).getQueue();
+		 if(que.isEmpty()) return "Service Window is Empty";
+		 else if(que.size()>= queueMap.get(queueName).getMaxSize()) return "Service Window is full";
+		 else return "Service Window is active";
+	 }
 	
 
 
