@@ -15,9 +15,14 @@ public class QueueController {
 	@RequestMapping("/addElement")
 	public String addElelement(@RequestParam(value="name") String name,
 			@RequestParam(value="message") String message) {
-		String response =service.addMessageToQueue(name, message);
+		Integer response =service.addMessageToQueue(name, message);
 		
-	return response;
+		if(response==1) {
+			return "failure";
+		} else {
+			return "success";
+		}
+		
 	}
 
 	
