@@ -1,6 +1,7 @@
 package com.hackthon.serviceImpl;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.*;
 
@@ -17,6 +18,7 @@ public class QueueServiceImpl  implements QueueService{
 	public void QueueServiceImp() {
 		
 		queueMap = new ConcurrentHashMap<String, QueueServicePOJO>();
+		queueMap.put("one", new QueueServicePOJO("one", 10));
 	}
 	
 	
