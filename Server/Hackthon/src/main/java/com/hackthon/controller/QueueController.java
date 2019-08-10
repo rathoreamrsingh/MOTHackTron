@@ -1,12 +1,13 @@
 package com.hackthon.controller;
 
+import java.util.ArrayList;
+import java.util.Queue;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hackthon.POJO.QueueServicePOJO;
 import com.hackthon.service.QueueService;
 
 @RestController
@@ -20,7 +21,9 @@ public class QueueController {
 		Integer response =service.addMessageToQueue(queueName, message);
 		
 		if(response==1) {
-			return "failure";
+			return "Max queue size reached";
+		} else if(response==-1) {
+			return "Queue Name not found";
 		} else {
 			return "success";
 		}
@@ -72,11 +75,29 @@ public class QueueController {
 		}
 	}
 	
-
+	@RequestMapping("/listQueues")
+	public ArrayList<String> listQueues() {
+		ArrayList<String> list = service.listQueues();
+		return list;
+	}
 	
+	@RequestMapping("/browseQueue")
+	public Queue<String> browseQueue(@RequestParam(value="queueName") String queueName) {
+		Queue<String> response = service.browseQueue(queueName);
+		return response;
+	}
 	
+	@RequestMapping("/checkFullorEmpty")
+	public String checkFullorEmpty(@RequestParam(value="queueName") String queueName) {
+		String response = service.checkFullorEmpty(queueName);
+		return response;
+	}
 	
-	
+	@RequestMapping("/consume")
+	public String consume(@RequestParam(value="queueName") String queueName) {
+		String response = service.consume(queueName);
+		return response;
+	}
 	
 	
 }
