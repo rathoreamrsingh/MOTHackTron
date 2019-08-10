@@ -7,4 +7,6 @@ public interface QueueService {
 	int deleteQueue(String queueName);
 	
 	int addQueue(String queueName, int maxSize);
+	
+	int removeAll();
 }

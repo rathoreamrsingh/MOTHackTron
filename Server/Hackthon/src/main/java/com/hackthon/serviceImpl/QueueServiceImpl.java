@@ -59,6 +59,12 @@ public class QueueServiceImpl  implements QueueService{
 		}
 		return 0;
 	}
+	
+	public int removeAll() {
+		queueMap.clear();
+		return 0;
+		
+	}
 
 
 }
