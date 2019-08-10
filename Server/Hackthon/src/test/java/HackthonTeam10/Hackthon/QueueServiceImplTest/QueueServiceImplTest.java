@@ -26,4 +26,10 @@ public class QueueServiceImplTest extends TestCase {
 		queueService.addMessageToQueue("one", "Hello");
 		assertEquals(0,queueService.removeItemFromQueue("one"));
 	}
+	
+	@Test
+	public void testListItems() {
+		queueService.addMessageToQueue("one", "Hello");
+		assertEquals(1,queueService.listQueues().size());
+	}
 }
