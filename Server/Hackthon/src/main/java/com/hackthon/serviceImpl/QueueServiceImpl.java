@@ -1,6 +1,12 @@
 package com.hackthon.serviceImpl;
 
+
 import java.util.LinkedList;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import java.util.Queue;
 import java.util.concurrent.*;
 
@@ -47,6 +53,7 @@ public class QueueServiceImpl  implements QueueService{
 		
 	}
 	
+
 	public int addQueue(String queueName, int maxSize) {
 		QueueServicePOJO  newQueue = new QueueServicePOJO(queueName,maxSize);
 		if(queueMap.size()<200) {
@@ -57,6 +64,33 @@ public class QueueServiceImpl  implements QueueService{
 		}
 		return 0;
 	}
+
+
+	public ArrayList<String> listQueues(){
+		ArrayList<String> qnames = new ArrayList<String>();
+		for(String key: queueMap.keySet()) {
+			qnames.add(key);
+		}
+		return qnames;
+	}
+	
+	public QueueServicePOJO peakQueue(String queueName) throws Exception {
+		try {
+			if(!queueMap.containsKey(queueName)) {
+				throw new Exception("queue doesn't exist");
+				
+			}
+			else {
+				return queueMap.get(queueName);
+			}
+		}
+		catch (Exception ex){
+			throw ex;
+		}
+		//return peakVal;
+	}
+	
+	
 
 
 }
