@@ -92,7 +92,7 @@ public class QueueServiceImpl  implements QueueService{
 	}
 	
 	public QueueServicePOJO peakQueue(String queueName) throws Exception {
-		try {
+		
 			if(!queueMap.containsKey(queueName)) {
 				throw new Exception("queue doesn't exist");
 				
@@ -100,14 +100,10 @@ public class QueueServiceImpl  implements QueueService{
 			else {
 				return queueMap.get(queueName);
 			}
-		}
-		catch (Exception ex){
-			throw ex;
-		}
-		//return peakVal;
+		
 	}
-	 public int removeItemFromQueue(String queueName) {
-		 try {
+	 public int removeItemFromQueue(String queueName) throws Exception {
+		
 				if(!queueMap.containsKey(queueName)) {
 					throw new Exception("queue doesn't exist");
 					
@@ -119,10 +115,7 @@ public class QueueServiceImpl  implements QueueService{
 					que.remove();
 					return 0;
 				}
-			}
-			catch (Exception ex){
-				throw ex;
-			}
+			
 	 }
 	
 
