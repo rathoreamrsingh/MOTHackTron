@@ -21,7 +21,7 @@ public class QueueServiceImpl  implements QueueService{
 	
 	private ConcurrentHashMap<String,QueueServicePOJO> queueMap;
 	
-	public void QueueServiceImp() {
+	public QueueServiceImpl() {
 		queueMap = new ConcurrentHashMap<String, QueueServicePOJO>();
 		queueMap.put("one", new QueueServicePOJO("one", 10));
 	}
@@ -86,10 +86,10 @@ public class QueueServiceImpl  implements QueueService{
 		return qnames;
 	}
 	
-	public Queue<String> browseQueue(String queueName) throws Exception {
+	public Queue<String> browseQueue(String queueName) {
 		
 			if(!queueMap.containsKey(queueName)) {
-				throw new Exception("queue doesn't exist");
+				return null;
 				
 			}
 			else {
@@ -97,10 +97,10 @@ public class QueueServiceImpl  implements QueueService{
 			}
 		
 	}
-	 public int removeItemFromQueue(String queueName) throws Exception {
+	 public int removeItemFromQueue(String queueName) {
 		
 				if(!queueMap.containsKey(queueName)) {
-					throw new Exception("queue doesn't exist");
+					return 1;
 					
 				}
 				else {
